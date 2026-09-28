@@ -24,7 +24,7 @@ chroma_client = chromadb.PersistentClient(
 
 llm = ChatGroq(
     api_key= settings.GROQ_API_KEY,
-    model_name ="llama3-8b-8192",
+    model_name ="openai/gpt-oss-20b",
     temperature=0.1
 )
 
