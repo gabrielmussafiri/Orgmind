@@ -6,7 +6,7 @@ from datetime import datetime
 class Organization(Base):
     __tablename__ ='organizations'
     
-    id= Column(Integer, primary_key = True)
+    id = Column(Integer, primary_key = True)
     name = Column(String(200), nullable=False)
     sector = Column(String(100))
     created_at = Column(DateTime, default=datetime.utcnow)

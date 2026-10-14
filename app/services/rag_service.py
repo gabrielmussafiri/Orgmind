@@ -2,16 +2,13 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_groq import ChatGroq
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 import chromadb
-import os
 
 from app.config import settings
 
-# Embedding function using Groq
-from langchain_community.embeddings import SentenceTransformerEmbeddings
-
-embedding_function = SentenceTransformerEmbeddings(
+# Embedding function using HuggingFace
+embedding_function = HuggingFaceEmbeddings(
     model_name ='all-MiniLM-L6-v2'
 )
 
@@ -21,26 +18,24 @@ chroma_client = chromadb.PersistentClient(
 )
 
 # LLM(Groq)
-
 llm = ChatGroq(
     api_key= settings.GROQ_API_KEY,
     model_name ="openai/gpt-oss-20b",
-    temperature=0.1
+    temperature= 0.1
 )
 
 # Ingest document into ChromaDB
-
-def ingest_document(file_path : str , org_id:int , doc_id:int , filename:str) -> int:
+def ingest_document(file_path: str , org_id:int , doc_id:int , filename:str) -> int:
     # 1. Load Pdf
     loader = PyPDFLoader(file_path)
     pages = loader.load()
     
     # 2. Split into chunks
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size =500,
-        chunk_overlap =50
+        chunk_size = 500,
+        chunk_overlap = 50
     )
-    chunks =splitter.split_documents(pages)
+    chunks = splitter.split_documents(pages)
     
     # 3. Add metadata to each chunk
     for chunk in chunks:
@@ -59,35 +54,43 @@ def ingest_document(file_path : str , org_id:int , doc_id:int , filename:str) ->
     vectorstore.add_documents(chunks)
     return len(chunks)
 
-# Query ChromaDB and generate answer
-
-def query_documents(question:str , org_id:int)-> dict:
-    
+def retrieve_documents(question: str , org_id:int , k:int=5):
     # 1. Get org's collection
-    collection_name =f'org_{org_id}'
-    vectorstore = Chroma(
-        client= chroma_client,
-        collection_name= collection_name,
-        embedding_function= embedding_function
-    )
+        collection_name = f'org_{org_id}'
+        vectorstore = Chroma(
+            client = chroma_client,
+            collection_name = collection_name,
+            embedding_function = embedding_function
+        )
+    # 2. Search for similarity chunks
+        results = vectorstore.similarity_search(question, k=k)
+        
+        return results
     
-    # 2. Search for relevant chunks
-    results = vectorstore.similarity_search(question, k=5)
+
+# Query ChromaDB and generate answer
+def query_documents(question:str , org_id:int)->dict:
+    
+    # 1.Check first if we do have the chunks
+    results = retrieve_documents(question , org_id)
     
     if not results:
-        return{
-            "answer": 'No relevant documents found , Please Upload documents first',
-            "sources":[]
+        return {
+            "answer": "No relevant documents found. Please upload documents first.",
+            "sources": [],
+            "doc_ids": []
         }
-    # 3. Build Context from chunks
+
+    # 2.Build Context from chunks
     context ="\n\n".join([doc.page_content for doc in results])
     sources = list(set([doc.metadata.get('filename','Unknown') for doc in results]))
+    doc_ids = list(set([doc.metadata.get('doc_id') for doc in results]))
     
-    # 4. Build prompt
-    prompt =f""" You are OrgMind , an AI assistant for humanitarian organisation and Company.
+    # 3. Build prompt
+    prompt = f""" You are OrgMind , an AI assistant for humanitarian organisation and Company.
     Answer the question using ONLY the context provided below.
     Always cite which document you answer comes from.
-    if the context doesn't contain the answer , say so clearlty.
+    if the context doesn't contain the answer , say so clearly.
     
     Context from organizational documents:
     {context}
@@ -100,5 +103,11 @@ def query_documents(question:str , org_id:int)-> dict:
     
     return{
         "answer": response.content,
-        'sources': sources
+        'sources': sources,
+        "doc_ids": doc_ids,
+        "context" : context
     }
+    
+
+    
+    
