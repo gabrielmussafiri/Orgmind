@@ -66,7 +66,6 @@ def retrieve_documents(question: str , org_id:int , k:int=5):
         results = vectorstore.similarity_search(question, k=k)
         
         return results
-    
 
 # Query ChromaDB and generate answer
 def query_documents(question:str , org_id:int)->dict:
