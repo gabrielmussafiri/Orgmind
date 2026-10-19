@@ -95,10 +95,7 @@ def evaluate_answer_correctness(generated_answer , reference_answer):
     
     return json.loads(result.content)
 
-
-
-
-
+# Loop
 for test_case in evaluation_case:
     question = test_case["question"]
     expected_doc_id = test_case["expected_doc_id"]
