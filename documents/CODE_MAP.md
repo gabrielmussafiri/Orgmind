@@ -1,75 +1,140 @@
 # OrgMind — Code Map
 
-## app/main.py
+## `app/main.py`
 
-Point d'entrée FastAPI. Crée les tables SQLAlchemy au démarrage, monte 3 routers (auth, documents, query), expose / et /health.
+The entry point of the FastAPI application. It creates the SQLAlchemy database tables at startup, registers three routers (`auth`, `documents`, and `query`), and exposes the `/` and `/health` endpoints.
 
-## app/config.py
+## `app/config.py`
 
-Charge les settings depuis .env (GROQ_API_KEY, CHROMA_DB_PATH, JWT_SECRET, etc.).
+Loads application settings from the `.env` file, including `GROQ_API_KEY`, `CHROMA_DB_PATH`, `JWT_SECRET`, and other configuration variables.
 
-## app/database.py
+## `app/database.py`
 
-Cree notre connextion avec la database (postgres ) configurations neccessaire pour run ma Database ( engine , session et dependence)
+Handles the PostgreSQL database connection and provides the necessary configuration to interact with the database. It defines the database engine, session, and dependency used by the application to access the database.
 
-## app/models.py
+## `app/models.py`
 
-Dans ces dossiers nous avons 4 classes de sqlachemy qui est notre ORM qui cree 4 tables dans notre base de donnee
+This file contains four SQLAlchemy model classes. SQLAlchemy is our ORM (Object-Relational Mapper), which allows us to interact with database tables using Python classes and objects.
 
-Organisation : C'est une class qui Cree une table dans ma database appelle organization qui enregistre toute les organisations dans mon appication avec leurs id , nom , sectuer , et la date de creation
-Et tout organisation a des users des documents et des historique des conversatation des users
+### 1. Organization
 
-User : C'est une class qui cree une table users dans la base de donnee , avec id , email , password , full_name , role , is_active , created , organisation_id et tout users a une relation avec sa conversation
+The `Organization` class defines the `organizations` table in the database. It stores information about each organization registered in the application, including its ID, name, sector, and creation date.
 
-Document : c'est une class qui cree une table documents dans la base de donne et chaque document a un id , filename, original_name , file_type , source , status , chunk_count, uploaded_at et l'organisation_id
+Each organization can have multiple users, documents, and conversation histories associated with it.
 
-Conversation : C'est une class qui cree une table conversation dans la base de donnee ,avec un id, question , answer , source , created_at , user_id , organisation_id
+### 2. User
 
-## app/services/auth_service.py
+The `User` class defines the `users` table in the database. It stores each user's ID, email, password hash, full name, role, active status, creation date, and `organization_id`.
 
-Ici c'est toute la logique de l'authenticification
+Each user belongs to an organization and can have a conversation history associated with their account.
 
-1.  hash_password : Function qui prend un string et lui encode
-2.  verify_password : il verifie le password que le user a saisi en plain et celui qui est hash ,le deux utilise le meme encodeur
-3.  create_token : cree une token pour les users qui sont connecte avec JWT_ALgorithm
-4.  verify_token : verifie que le token est toujours active ou valide
-5.  get_current_user : prend tout ce qui appartient au user connected , son token , user_id
+### 3. Document
 
-## app/services/rag_service.py
+The `Document` class defines the `documents` table in the database. Each document record contains an ID, filename, original filename, file type, source, processing status, chunk count, upload date, and `organization_id`.
 
-Ce ficher a toute notre logique Rag separee en 3 functions
+This table keeps track of the documents uploaded to the application and the organization to which each document belongs.
 
-1. ingest document : c'est une function Qui load le pdf en pages , split pages en 500 caracters par chunks et une duplication de 50 caracters , ajoute le metadata sur chaque chunks(org_id , doc_id , filemname ) , sauvegarde les chunk en chromad en leurs nom de collection et return la taille des chunks
-2. retrieve_document : c'est une fonction qui prend ka question , l'oganisation_id , et jusqu'a combien des chunk peut etre retrieved , Cherche la similarity des chunk d'apres la question et return la liste des chunks qui sont relevants d'apres la question
-3. query_documents : c'est une function qui prensd la question et 'organisation id en parametre , retrived la list des chunks et le garder dans results , Prendre tout les contenu des chunks qu on a retrieved , le mettre en semble dans une variable context , on prend tout les metadata(filemname) des chunks retrieved on le met dans sources , on prend tout les metadata(doc_ids) des chunks retrievd dans doc-ids
-   Note de securite : query documents retrieved sur toute la collection sans filtrer par doc_id. un user de l'org_q peut donc voir tous les documents de l'org1
+### 4. Conversation
 
-4. creer le prompt , generez la reponse avec llm et returner la question , sources , doc_ids , context
+The `Conversation` class defines the `conversations` table in the database. It stores an ID, question, answer, source information, creation date, `user_id`, and `organization_id`.
 
-## app/routes/auth.py
+This table maintains a history of user questions and the answers generated by the RAG system.
 
-C'est mon endpoint qui permet aux users de creer des comptes d'organisation et Login
+## `app/services/auth_service.py`
 
-1. register_org : Check email si ca Existe deja , sinon Creer une organisation avec son premier user admin
-2. login : permet au user de log in si le compte existe dans la database
-3. get_met : return le user qui est connecter avec tout ses informations en un coup
+Contains the authentication logic of the application.
 
-## app/routes/documents.py
+1. **`hash_password()`** — Takes a plain-text password and hashes it before storing it in the database.
+2. **`verify_password()`** — Verifies a user's submitted password against the stored password hash.
+3. **`create_token()`** — Creates a JWT (JSON Web Token) for an authenticated user using the configured JWT algorithm.
+4. **`verify_token()`** — Validates the JWT and checks whether it is valid and has not expired.
+5. **`get_current_user()`** — Uses the authentication token to identify the currently authenticated user and retrieve their associated user information.
 
-c'est le Endpoint qui permet d upload un document pdf , verifier son type , save le document dans postgres , aussi la taille des chunk de chromadb ,
-get_document: permet de retrouver tout les document d'une organisation
-delete_document : permet d'effcer un document
+## `app/services/rag_service.py`
 
-## app/routes/query.py
+Contains the core RAG (Retrieval-Augmented Generation) logic, separated into three main functions.
 
-c'est le endpoint qui permet de query un document , save une conversation , returner une reponse
-ask_question : prend la reponse dans le ficher rag avec la function query_documents , save the conversatation dans notre basse de donnee , return la reponse avec la source
-get_history : qui retrouver toute la conversatation du user le return comme un dictionnaire
+### 1. `ingest_document()`
 
-## app/evaluation.py
+Processes an uploaded PDF document.
 
-Evaluation est un script qui permet d'evaluer la reponse de mon rag , avec des question test et ses reponses , je calcul la precision pour savoir le chunk que je retrieved contien de relevant chunks , aussi de s'avoir si les LLM est faithful au contenu des chunks qu il recois
+- Loads the PDF and extracts its content page by page.
+- Splits the content into chunks of approximately 500 characters, with a 50-character overlap between consecutive chunks.
+- Adds metadata to each chunk, including `org_id`, `doc_id`, and `filename`.
+- Stores the chunks and their embeddings in ChromaDB.
+- Returns the total number of chunks created.
 
-## app/check_pdf_extraction.py
+### 2. `retrieve_documents()`
 
-c'est un script d'experimentation des deux methode "Dense " et "BM25" afin de voir si le quqel perform mieux ;'un check la similarity des mots et d'autre travail avec le mot a mot
+Takes a question, an `organization_id`, and the maximum number of chunks to retrieve (`k`).
+
+It searches for chunks that are semantically similar to the user's question and returns the most relevant chunks.
+
+The organization ID should be used to restrict retrieval to the appropriate organization's data through a metadata filter.
+
+### 3. `query_documents()`
+
+Takes a question and an `organization_id` as parameters.
+
+- Calls the retrieval function to retrieve relevant chunks and stores the results.
+- Combines the content of the retrieved chunks into a single variable called `context`.
+- Extracts the `filename` metadata from the retrieved chunks and stores it in `sources`.
+- Extracts the document IDs from the retrieved chunks and stores them in `doc_ids`.
+- Creates a prompt containing the question and the retrieved context.
+- Sends the prompt to the LLM to generate an answer.
+- Returns the generated answer, sources, document IDs, and context.
+
+**Security note:** If document retrieval is performed across the entire ChromaDB collection without the correct organization-level metadata filter, users may be able to retrieve documents belonging to other organizations. For example, a user from Organization 2 could potentially access information from Organization 1. Retrieval must enforce organization-level isolation.
+
+## `app/routes/auth.py`
+
+Provides the authentication endpoints that allow users to register organizations, create accounts, and log in.
+
+1. **`register_org()`** — Checks whether the email address already exists. If it does not, the function creates a new organization and registers its first user with the administrator role.
+2. **`login()`** — Authenticates a user by checking their credentials against the information stored in the database.
+3. **`get_me()`** — Returns information about the currently authenticated user.
+
+## `app/routes/documents.py`
+
+Handles document management operations.
+
+- **Upload document:** Accepts a PDF file, validates its file type, stores the document record in PostgreSQL, processes the document through the RAG ingestion pipeline, and records the number of chunks created.
+- **`get_documents()`** — Retrieves the documents associated with an organization.
+- **`delete_document()`** — Deletes a document from the application.
+
+**Implementation note:** Document deletion should also remove the associated chunks from ChromaDB to prevent deleted documents from remaining retrievable.
+
+## `app/routes/query.py`
+
+Handles user questions, generated answers, and conversation history.
+
+### 1. `ask_question()`
+
+- Receives a user's question.
+- Calls `query_documents()` from `rag_service.py` to retrieve relevant context and generate an answer.
+- Saves the conversation in PostgreSQL.
+- Returns the generated answer along with its source information.
+
+### 2. `get_history()`
+
+Retrieves the conversation history associated with the authenticated user and returns it in a structured format, such as a list of dictionaries.
+
+## `app/evaluation.py`
+
+Evaluates the performance of the RAG system using predefined test questions and expected results.
+
+It measures two important aspects of RAG performance:
+
+1. **Retrieval precision:** Evaluates whether the retrieved chunks are relevant to the test question. For example, Precision@K measures the proportion of the top K retrieved chunks that are relevant.
+2. **Faithfulness:** Evaluates whether the LLM-generated answer is supported by the retrieved context rather than containing unsupported claims.
+
+These evaluations help determine whether the retrieval system finds relevant information and whether the LLM uses that information faithfully when generating answers.
+
+## `app/check_pdf_extraction.py`
+
+An experimental script used to compare two information-retrieval approaches: **Dense Retrieval** and **BM25**.
+
+- **Dense Retrieval:** Uses vector embeddings to retrieve documents based on semantic similarity. It can identify related concepts even when the question and document use different words.
+- **BM25:** Uses a lexical ranking algorithm based on matching query terms with document terms, considering factors such as term frequency and document frequency.
+
+The purpose of this experiment is to compare their retrieval performance and determine which approach works better for OrgMind's documents and queries.

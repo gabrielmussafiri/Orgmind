@@ -1,0 +1,207 @@
+[
+  {
+    "id": "q001",
+    "question": "What were the top 5 funding countries to the IFRC in 2024 and how much did each contribute?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "United States (151.0 million CHF), European Commission (106.3 million CHF), United Kingdom (57.2 million CHF), Switzerland (49.9 million CHF), The Netherlands (35.2 million CHF).",
+    "source_page": 9,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q002",
+    "question": "How many National Society volunteers and staff were killed on duty in 2024, and how many died in violent attacks?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "32 National Society volunteers and staff were killed on duty in 2024. 29 of them died in violent attacks.",
+    "source_page": 11,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q003",
+    "question": "What percentage of IFRC-DREF allocations went directly to National Societies in 2024?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "76.5% of IFRC-DREF allocations went directly to National Societies.",
+    "source_page": 6,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q004",
+    "question": "What was the total funding received by the IFRC in 2024 in Swiss francs?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "Total funding for 2024 was nearly 1.1 billion Swiss francs (specifically 1,083.8 million CHF).",
+    "source_page": 8,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q005",
+    "question": "How many people were reached by the IFRC network through health and wellbeing programs in 2024?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "89.8 million people were reached through Health and wellbeing programs in 2024.",
+    "source_page": 9,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q006",
+    "question": "What was the total expenditure by region in 2024, and which region had the highest expenditure?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "Africa: 160.1 million CHF; Americas: 44.6 million CHF; Asia Pacific: 85.7 million CHF; Europe: 157.1 million CHF; MENA: 105.0 million CHF; Global: 141.9 million CHF. Africa had the highest regional expenditure at 160.1 million CHF.",
+    "source_page": 8,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q007",
+    "question": "What is DREF and when was it established?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "DREF is the Disaster Response Emergency Fund. It celebrated its 45th anniversary in 2024, meaning it was established in 1979.",
+    "source_page": 6,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q008",
+    "question": "How many community health workers were trained and deployed through the REACH initiative in 2024?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "Approximately 1,000 community health workers have been trained and deployed through the REACH initiative.",
+    "source_page": 14,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q009",
+    "question": "What was the funding requirement versus actual funding for emergencies in 2024?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "The funding requirement for emergencies was 1,200.0 million CHF, while actual funding was 438.1 million CHF.",
+    "source_page": 8,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q010",
+    "question": "What is the IFRC's target for the Global Climate Resilience Platform and how much has been raised since January 2023?",
+    "type": "answerable",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "The Global Climate Resilience Platform aims to mobilize 1 billion Swiss francs. Since January 2023, more than 318 million Swiss francs has been raised and channelled to 100 at-risk countries.",
+    "source_page": 13,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q011",
+    "question": "What is the annual salary of the IFRC Secretary General?",
+    "type": "unanswerable",
+    "expected_doc_ids": [],
+    "reference_answer": null,
+    "source_page": null,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q012",
+    "question": "What specific security incidents occurred in Sudan in October 2024?",
+    "type": "unanswerable",
+    "expected_doc_ids": [],
+    "reference_answer": null,
+    "source_page": null,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q013",
+    "question": "What is the IFRC's policy on drone usage for humanitarian deliveries?",
+    "type": "unanswerable",
+    "expected_doc_ids": [],
+    "reference_answer": null,
+    "source_page": null,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q014",
+    "question": "What was the IFRC's IT infrastructure budget in 2024?",
+    "type": "unanswerable",
+    "expected_doc_ids": [],
+    "reference_answer": null,
+    "source_page": null,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q015",
+    "question": "Who are the current board members of the IFRC for 2025?",
+    "type": "unanswerable",
+    "expected_doc_ids": [],
+    "reference_answer": null,
+    "source_page": null,
+    "user_org_id": 1,
+    "user_role": "field_staff"
+  },
+  {
+    "id": "q016",
+    "question": "What were the top funding countries in 2024?",
+    "type": "access_control",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "United States, European Commission, United Kingdom, Switzerland, The Netherlands.",
+    "source_page": 9,
+    "user_org_id": 1,
+    "user_role": "external_auditor",
+    "expected_behavior": "refuse_or_empty"
+  },
+  {
+    "id": "q017",
+    "question": "What was the IFRC's total operating expenditure in 2024?",
+    "type": "access_control",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "Total operating expenditure in 2024 was 676.0 million CHF.",
+    "source_page": 68,
+    "user_org_id": 1,
+    "user_role": "volunteer",
+    "expected_behavior": "refuse_or_empty"
+  },
+  {
+    "id": "q018",
+    "question": "How many staff were killed in violent attacks in 2024?",
+    "type": "access_control",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "29 National Society volunteers and staff were killed in violent attacks in 2024.",
+    "source_page": 11,
+    "user_org_id": 1,
+    "user_role": "external_partner",
+    "expected_behavior": "refuse_or_empty"
+  },
+  {
+    "id": "q019",
+    "question": "What was the funding gap for Emergency Appeals in 2024?",
+    "type": "access_control",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "The funding requirement for emergencies was 1,200.0 million CHF, while actual funding was 438.1 million CHF, resulting in a funding gap of 761.9 million CHF.",
+    "source_page": 8,
+    "user_org_id": 1,
+    "user_role": "volunteer",
+    "expected_behavior": "refuse_or_empty"
+  },
+  {
+    "id": "q020",
+    "question": "What was the DREF funding breakdown by region in 2024?",
+    "type": "access_control",
+    "expected_doc_ids": ["2"],
+    "reference_answer": "Africa: 40.8 million CHF targeting 13,685,078 people; Americas: 15.4 million CHF targeting 296,495 people; Asia Pacific: 17.3 million CHF targeting 2,659,370 people; Europe: 3.8 million CHF targeting 64,797 people; MENA: 8.0 million CHF targeting 7,896,785 people.",
+    "source_page": 77,
+    "user_org_id": 1,
+    "user_role": "external_partner",
+    "expected_behavior": "refuse_or_empty"
+  }
+]
