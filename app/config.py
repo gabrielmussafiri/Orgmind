@@ -9,6 +9,9 @@ class Settings:
 
     # Groq
     GROQ_API_KEY: str = os.getenv("GROQ_API_KEY")
+    
+    # Anthropic
+    ANTHROPIC_API_KEY : str = os.getenv("ANTHROPIC_API_KEY")
 
     # ChromaDB
     CHROMA_DB_PATH: str = os.getenv("CHROMA_DB_PATH", "./chroma_db")
