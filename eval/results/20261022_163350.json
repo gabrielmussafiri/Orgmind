@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "timestamp": "2026-10-22T16:33:50.369190",
+    "model": "claude-haiku-4-5-20251001",
+    "total_cases": 20,
+    "answerable_count": 10,
+    "unanswerable_count": 5,
+    "hit_rate@5": 1.0,
+    "precision@5": 1.0,
+    "faithfulness": 0.7,
+    "correctness": 0.5,
+    "refusal_accuracy": 0.8
+  },
+  "results": [
+    {
+      "id": "q001",
+      "type": "answerable",
+      "question": "What were the top 5 funding countries to the IFRC in 2024 and how much did each contribute?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q002",
+      "type": "answerable",
+      "question": "How many National Society volunteers and staff were killed on duty in 2024, and how many died in violent attacks?",
+      "generated_answer": "32 National Society volunteers and staff were killed on duty in 2024, and 29 of them died in violent attacks【doc_2_chunk_27】【doc_2_chunk_12】",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q003",
+      "type": "answerable",
+      "question": "What percentage of IFRC-DREF allocations went directly to National Societies in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": null,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q004",
+      "type": "answerable",
+      "question": "What was the total funding received by the IFRC in 2024 in Swiss francs?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": null,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q005",
+      "type": "answerable",
+      "question": "How many people were reached by the IFRC network through health and wellbeing programs in 2024?",
+      "generated_answer": "In 2024, the IFRC network reached **2,518,080 people** through health activities, which include risk communication and community engagement for epidemic control【doc_2_chunk_758】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q006",
+      "type": "answerable",
+      "question": "What was the total expenditure by region in 2024, and which region had the highest expenditure?",
+      "generated_answer": "**2024 expenditure by region (in Swiss francs, millions)**  \n- Africa: 160.1 [doc_2_chunk_516]  \n- Americas: 44.6 [doc_2_chunk_516]  \n- Asia Pacific: 85.7 [doc_2_chunk_516]  \n- Europe: 157.1 [doc_2_chunk_516]  \n- MENA: 105.0 [doc_2_chunk_516]  \n- Global: 141.9 [doc_2_chunk_516]  \n- **Total:** 694.3 [doc_2_chunk_516]\n\n**Region with the highest expenditure:** Africa, with CHF 160.1 million.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q007",
+      "type": "answerable",
+      "question": "What is DREF and when was it established?",
+      "generated_answer": "DREF (IFRC‑DREF) is a pooled‑fund mechanism that supports the implementation of anticipatory action to protect lives and livelihoods and to mitigate the impact of an imminent disaster expected to be of above‑average scale. It channels a large portion of its allocations directly to the IFRC’s member National Societies, with 76.5 % of its funds going to them [doc_2_chunk_552]. The fund celebrated its 45th anniversary in 2024, indicating it was established 45 years earlier [doc_2_chunk_552].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q008",
+      "type": "answerable",
+      "question": "How many community health workers were trained and deployed through the REACH initiative in 2024?",
+      "generated_answer": "Through the REACH initiative in 2024, approximately **1,000 community health workers were trained and deployed** to meet people’s healthcare needs【doc_2_chunk_998】【doc_2_chunk_999】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q009",
+      "type": "answerable",
+      "question": "What was the funding requirement versus actual funding for emergencies in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": null,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q010",
+      "type": "answerable",
+      "question": "What is the IFRC's target for the Global Climate Resilience Platform and how much has been raised since January 2023?",
+      "generated_answer": "The IFRC’s Global Climate Resilience Platform aims to mobilize **1 billion Swiss francs** to build locally‑led climate resilience worldwide [doc_2_chunk_836][doc_2_chunk_35]. Since January 2023, it has raised **more than 318 million Swiss francs** in funding for locally‑led climate action programming [doc_2_chunk_36].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q011",
+      "type": "unanswerable",
+      "question": "What is the annual salary of the IFRC Secretary General?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q012",
+      "type": "unanswerable",
+      "question": "What specific security incidents occurred in Sudan in October 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q013",
+      "type": "unanswerable",
+      "question": "What is the IFRC's policy on drone usage for humanitarian deliveries?",
+      "generated_answer": "The IFRC’s policy is to employ drones for humanitarian deliveries, as demonstrated by its launch of a drone‑based supply chain initiative in partnership with the Kenya Red Cross and Wings to Aid【doc_2_chunk_1473】.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 0.0
+      }
+    },
+    {
+      "id": "q014",
+      "type": "unanswerable",
+      "question": "What was the IFRC's IT infrastructure budget in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q015",
+      "type": "unanswerable",
+      "question": "Who are the current board members of the IFRC for 2025?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q016",
+      "type": "access_control",
+      "question": "What were the top funding countries in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q017",
+      "type": "access_control",
+      "question": "What was the IFRC's total operating expenditure in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q018",
+      "type": "access_control",
+      "question": "How many staff were killed in violent attacks in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q019",
+      "type": "access_control",
+      "question": "What was the funding gap for Emergency Appeals in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q020",
+      "type": "access_control",
+      "question": "What was the DREF funding breakdown by region in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    }
+  ]
+}

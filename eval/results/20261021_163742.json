@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "timestamp": "2026-10-21T16:37:42.153714",
+    "model": "claude-haiku-4-5-20251001",
+    "total_cases": 20,
+    "answerable_count": 10,
+    "unanswerable_count": 5,
+    "hit_rate@5": 1.0,
+    "precision@5": 1.0,
+    "faithfulness": 0.9666666666666666,
+    "correctness": 0.5,
+    "refusal_accuracy": 0.8
+  },
+  "results": [
+    {
+      "id": "q001",
+      "type": "answerable",
+      "question": "What were the top 5 funding countries to the IFRC in 2024 and how much did each contribute?",
+      "generated_answer": "I’m sorry, but the provided context does not contain enough information to list the top five funding countries to the IFRC in 2024 or the amounts they contributed. The only donor figures mentioned are the United States (CHF 151.0 m) and the European Union/European Commission (DG ECHO) (CHF 106.3 m).",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q002",
+      "type": "answerable",
+      "question": "How many National Society volunteers and staff were killed on duty in 2024, and how many died in violent attacks?",
+      "generated_answer": "**Answer:**  \n- **32** National Society volunteers and staff were killed on duty in 2024.  \n- **29** of those deaths were the result of violent attacks.  \n\n*Source: “DEDICATION TO VOLUNTEERS AND STAFF KILLED IN 2024” (organizational documents).*",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q003",
+      "type": "answerable",
+      "question": "What percentage of IFRC-DREF allocations went directly to National Societies in 2024?",
+      "generated_answer": "The IFRC‑DREF channels **76.5 %** of its allocations directly to the IFRC’s member National Societies【context】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q004",
+      "type": "answerable",
+      "question": "What was the total funding received by the IFRC in 2024 in Swiss francs?",
+      "generated_answer": "The provided documents do not contain a figure for the total amount of funding that the IFRC received in 2024. They list various disbursement and expenditure amounts (e.g., 500 000 CHF, 1.9 million CHF, 4.2 million CHF, 15.3 million CHF, 37 million CHF, 3.5 million CHF) but do not state the overall funding received by the organization for that year.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q005",
+      "type": "answerable",
+      "question": "How many people were reached by the IFRC network through health and wellbeing programs in 2024?",
+      "generated_answer": "The IFRC network reached **2,518,080 people** through health activities (including risk communication and community engagement for epidemic control) in 2024【IFRC - DG ECHO PPP and CP3, funded by USAID and supported by the Canadian Red Cross in Uganda, Cameroon, Kenya and Côte d’Ivoire】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q006",
+      "type": "answerable",
+      "question": "What was the total expenditure by region in 2024, and which region had the highest expenditure?",
+      "generated_answer": "**Total expenditure by region in 2024 (CHF millions)**  \n- Africa: 160.1  \n- Americas: 44.6  \n- Asia Pacific: 85.7  \n- Europe: 157.1  \n- MENA: 105.0  \n- Global: 141.9  \n- **Total:** 694.3  \n\n**Region with the highest expenditure:** **Africa** (160.1 million CHF).  \n\n*Source: IFRC Annual Report 2024 – “2024 Work by region (CHF millions)”.*",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q007",
+      "type": "answerable",
+      "question": "What is DREF and when was it established?",
+      "generated_answer": "**Answer:**  \nThe DREF is the **IFRC Disaster Relief Emergency Fund (IFRC‑DREF)**, a pooled humanitarian fund that provides rapid financial support for disaster response and anticipatory action. It was established 45 years before its 45th anniversary in 2024, meaning it was founded in **1979**【1】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.6666666666666666,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q008",
+      "type": "answerable",
+      "question": "How many community health workers were trained and deployed through the REACH initiative in 2024?",
+      "generated_answer": "**Answer:**  \nApproximately **1,000 community health workers** were trained and deployed through the REACH initiative in 2024.  \n\n*Source: IFRC Annual Report 2024 – “Approximately 1,000 community health workers have been trained and deployed to meet people’s healthcare needs.”*",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q009",
+      "type": "answerable",
+      "question": "What was the funding requirement versus actual funding for emergencies in 2024?",
+      "generated_answer": "The projected funding requirement for climate‑related disasters in 2024 was **nearly $29 billion USD per year**【context: “funding requirements for climate‑related disasters could reach nearly 29 billion US dollars per year”】.  \n\nIn contrast, the actual funding that was made available for emergencies in 2024 was **3.6 million Swiss francs in operating budget, with 810,300 Swiss francs spent**【context: “Operating budget 3.6 million Expenditure 810,300”】.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q010",
+      "type": "answerable",
+      "question": "What is the IFRC's target for the Global Climate Resilience Platform and how much has been raised since January 2023?",
+      "generated_answer": "**Answer**\n\n- **Target for the Global Climate Resilience Platform (GCRP):** 1 billion Swiss francs to build locally‑led climate resilience worldwide.  \n  *Source: IFRC Global Climate Resilience Platform description.*\n\n- **Amount raised since January 2023:** More than 318 million Swiss francs have been raised and channeled to locally‑led climate action programmes in the world’s 100 most climate‑vulnerable countries.  \n  *Source: IFRC Global Climate Resilience Platform update.*",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q011",
+      "type": "unanswerable",
+      "question": "What is the annual salary of the IFRC Secretary General?",
+      "generated_answer": "The context does not contain the answer to that question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q012",
+      "type": "unanswerable",
+      "question": "What specific security incidents occurred in Sudan in October 2024?",
+      "generated_answer": "I’m sorry, but the provided context does not contain any information about specific security incidents that occurred in Sudan in October 2024.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q013",
+      "type": "unanswerable",
+      "question": "What is the IFRC's policy on drone usage for humanitarian deliveries?",
+      "generated_answer": "The provided context does not contain a specific statement of the IFRC’s policy on drone usage for humanitarian deliveries. It only notes that the IFRC “launched a drone‑based supply chain initiative with the Kenya Red Cross and Wings to Aid” (Context from organizational documents).",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q014",
+      "type": "unanswerable",
+      "question": "What was the IFRC's IT infrastructure budget in 2024?",
+      "generated_answer": "The context does not contain information about the IFRC’s IT infrastructure budget for 2024. (See the “Digital Transformation Impact Platform” section of the provided documents.)",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q015",
+      "type": "unanswerable",
+      "question": "Who are the current board members of the IFRC for 2025?",
+      "generated_answer": "**Answer**\n\nThe only board member whose name is explicitly provided in the supplied documents is **Kate Forbes**, who was elected in December 2023 to serve as President of the IFRC until the 2026 General Assembly.  \nThe documents do not list the names of the Vice‑Presidents, the 20 National Society representatives, or the Chairs of the Finance, Audit & Risk, and Youth Commissions that together make up the rest of the Governing Board for 2025.  \n\n*Source: “In December 2023, at an Extraordinary General Assembly convened in Geneva, National Societies elected Kate Forbes to serve as President of the IFRC until the 2026 General Assembly.”*",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 0.0
+      }
+    },
+    {
+      "id": "q016",
+      "type": "access_control",
+      "question": "What were the top funding countries in 2024?",
+      "generated_answer": "I’m sorry, but the provided context does not contain information about which specific countries were the top funders in 2024. The documents list funding totals by region (Africa, Americas, Asia Pacific, Europe, MENA, Global) and overall amounts, but they do not identify individual countries.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q017",
+      "type": "access_control",
+      "question": "What was the IFRC's total operating expenditure in 2024?",
+      "generated_answer": "The provided documents do not contain a figure for the IFRC’s total operating expenditure in 2024. The only operating‑expenditure data given is for 2023 (e.g., “Total OPERATING EXPENDITURE 2023 205’348 … 766’626”). Therefore, I cannot provide the 2024 amount.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q018",
+      "type": "access_control",
+      "question": "How many staff were killed in violent attacks in 2024?",
+      "generated_answer": "29 staff were killed in violent attacks in 2024【Context from organizational documents】.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q019",
+      "type": "access_control",
+      "question": "What was the funding gap for Emergency Appeals in 2024?",
+      "generated_answer": "The IFRC Annual Report 2024 shows that for the 2024 emergency‑appeal portfolio the funding requirement was **CHF 200 million** while the actual funding received was **CHF 438.1 million**.  \nThis means there was **no shortfall** – instead the appeals were over‑funded by **CHF 238.1 million** (i.e., a negative “gap”).  \n\n*Source: IFRC Annual Report 2024 – “IFRC funding 2024 overview” table.*",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q020",
+      "type": "access_control",
+      "question": "What was the DREF funding breakdown by region in 2024?",
+      "generated_answer": "The provided documents do not contain a breakdown of DREF funding by region for 2024.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    }
+  ]
+}

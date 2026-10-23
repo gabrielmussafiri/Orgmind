@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "timestamp": "2026-10-22T17:17:49.734102",
+    "model": "claude-haiku-4-5-20251001",
+    "total_cases": 20,
+    "answerable_count": 10,
+    "unanswerable_count": 5,
+    "hit_rate@5": 1.0,
+    "precision@5": 1.0,
+    "faithfulness": 0.7398809523809524,
+    "correctness": 0.5,
+    "refusal_accuracy": 1.0
+  },
+  "results": [
+    {
+      "id": "q001",
+      "type": "answerable",
+      "question": "What were the top 5 funding countries to the IFRC in 2024 and how much did each contribute?",
+      "generated_answer": "The top five funding countries to the IFRC in 2024 were:\n\n1. United States – CHF 151.0 million  \n2. European Union/European Commission (DG ECHO) – CHF 106.3 million  \n3. United Kingdom – CHF 57.2 million  \n4. Switzerland – CHF 49.9 million  \n5. The Netherlands – CHF 35.2 million [doc_2_chunk_268].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q002",
+      "type": "answerable",
+      "question": "How many National Society volunteers and staff were killed on duty in 2024, and how many died in violent attacks?",
+      "generated_answer": "The IFRC report states that **32 National Society volunteers and staff were killed on duty in 2024, and 29 of those deaths were the result of violent attacks** [doc_2_chunk_16][doc_2_chunk_7].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q003",
+      "type": "answerable",
+      "question": "What percentage of IFRC-DREF allocations went directly to National Societies in 2024?",
+      "generated_answer": "The IFRC‑DREF directed **76.5 %** of its 2024 allocations directly to its member National Societies [doc_2_chunk_295].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q004",
+      "type": "answerable",
+      "question": "What was the total funding received by the IFRC in 2024 in Swiss francs?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q005",
+      "type": "answerable",
+      "question": "How many people were reached by the IFRC network through health and wellbeing programs in 2024?",
+      "generated_answer": "84.7 million people were reached by the IFRC network through health and wellbeing programs in 2024 [doc_2_chunk_527].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.6666666666666666,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q006",
+      "type": "answerable",
+      "question": "What was the total expenditure by region in 2024, and which region had the highest expenditure?",
+      "generated_answer": "The 2024 operating expenditure by region was reported as follows:  \n\n- Africa — 153,700 CHF  \n- Americas — 43,400 CHF  \n- Asia Pacific — 84,300 CHF  \n- Europe — 148,200 CHF  \n- Middle East and North Africa — 97,700 CHF  \n- Hosted projects — 9,900 CHF  \n\nThe region with the highest expenditure in 2024 was **Africa** with 153,700 CHF [doc_2_chunk_1280].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.8571428571428571,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q007",
+      "type": "answerable",
+      "question": "What is DREF and when was it established?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q008",
+      "type": "answerable",
+      "question": "How many community health workers were trained and deployed through the REACH initiative in 2024?",
+      "generated_answer": "The REACH initiative trained and deployed **1,000 community health workers** in 2024 [doc_2_chunk_28].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q009",
+      "type": "answerable",
+      "question": "What was the funding requirement versus actual funding for emergencies in 2024?",
+      "generated_answer": "The IFRC’s 2024 Emergency Operations report shows that the total funding requirement for emergencies was **2.8 billion CHF** [doc_2_chunk_377].  \nActual funding that was allocated in 2024 was distributed across several disaster types as follows:  \n\n- Floods: 32.1 million CHF  \n- Cyclones: 11.6 million CHF  \n- Epidemics: 10.4 million CHF  \n- Drought: 7.2 million CHF  \n- Complex emergencies: 5.0 million CHF  \n- Other emergencies: 9.8 million CHF  \n\nThese figures represent the actual funding disbursed for each category of emergency in 2024 [doc_2_chunk_299].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.875,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q010",
+      "type": "answerable",
+      "question": "What is the IFRC's target for the Global Climate Resilience Platform and how much has been raised since January 2023?",
+      "generated_answer": "The Global Climate Resilience Platform aims to mobilise **1 billion Swiss francs** over its five‑year framework [doc_2_chunk_444]. Since January 2023, the IFRC has already channelled **more than 318 million Swiss francs** into locally‑led climate action programmes in 100 at‑risk countries [doc_2_chunk_442].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q011",
+      "type": "unanswerable",
+      "question": "What is the annual salary of the IFRC Secretary General?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q012",
+      "type": "unanswerable",
+      "question": "What specific security incidents occurred in Sudan in October 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q013",
+      "type": "unanswerable",
+      "question": "What is the IFRC's policy on drone usage for humanitarian deliveries?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q014",
+      "type": "unanswerable",
+      "question": "What was the IFRC's IT infrastructure budget in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q015",
+      "type": "unanswerable",
+      "question": "Who are the current board members of the IFRC for 2025?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q016",
+      "type": "access_control",
+      "question": "What were the top funding countries in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q017",
+      "type": "access_control",
+      "question": "What was the IFRC's total operating expenditure in 2024?",
+      "generated_answer": "The IFRC’s total operating expenditure in 2024 was 694.3 million CHF [doc_2_chunk_280].",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q018",
+      "type": "access_control",
+      "question": "How many staff were killed in violent attacks in 2024?",
+      "generated_answer": "The report states that 29 staff members were killed in violent attacks in 2024 [doc_2_chunk_16].",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q019",
+      "type": "access_control",
+      "question": "What was the funding gap for Emergency Appeals in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q020",
+      "type": "access_control",
+      "question": "What was the DREF funding breakdown by region in 2024?",
+      "generated_answer": "The IFRC‑DREF allocated the following amounts by region in 2024:\n\n- Africa: 40.8 million CHF  \n- Americas: 15.4 million CHF  \n- Asia Pacific: 17.3 million CHF  \n- Europe: 3.8 million CHF  \n- MENA: 8.0 million CHF【doc_2_chunk_298】",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    }
+  ]
+}
