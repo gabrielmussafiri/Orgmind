@@ -3,7 +3,7 @@
 AI-powered institutional memory system for humanitarian
 and international organizations.
 
-![Status](https://img.shields.io/badge/status-week%201%20complete-blue)
+![Status](https://img.shields.io/badge/status-week%202%20complete-blue)
 ![Python](https://img.shields.io/badge/python-3.13-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -27,20 +27,31 @@ isn't in the corpus, the system says so.
 
 ## Current Status
 
-**Week 1 complete: baseline evaluation.**
+**Week 2 complete: RAG pipeline v2.**
 
-| Metric                  | Baseline | Target |
-| ----------------------- | -------- | ------ |
-| Retrieval hit rate @5   | **100%** | ≥ 90%  |
-| Retrieval precision @5  | **100%** | ≥ 80%  |
-| Faithfulness (AI judge) | **98%**  | ≥ 90%  |
-| Answer correctness      | **50%**  | ≥ 80%  |
-| Refusal accuracy        | **60%**  | ≥ 90%  |
+| Metric                  | W1 baseline | **W2 current** | Target |
+| ----------------------- | ----------- | -------------- | ------ |
+| Retrieval hit rate @5   | 100%        | **100%**       | ≥ 90%  |
+| Retrieval precision @5  | 100%        | **100%**       | ≥ 80%  |
+| Faithfulness (AI judge) | 98%\*       | **97.5%**      | ≥ 90%  |
+| Answer correctness      | 50%         | **90%**        | ≥ 80%  |
+| Refusal accuracy        | 60%         | **100%**       | ≥ 90%  |
 
-**Diagnosis:** retrieval is solid. Generation is the bottleneck.
-Two hallucinations detected on unanswerable questions (salary,
-board members). Week 2 focuses on prompt engineering and
-access control.
+_\*W1 faithfulness was inflated by frequent refusals — the LLM refused instead of hallucinating._
+
+**What moved the needle (in order):**
+
+1. Prompt engineering (3 iterations): 50% → 50%. No effect.
+2. Chunking 500→1000 chars: refusal 80% → 100%. No effect on correctness.
+3. Embedding swap MiniLM → BGE-large (with query prefix): 50% → 60%.
+4. Hybrid search (BGE + BM25) + cross-encoder reranker + k=8: **60% → 90%**.
+
+**One case remains:** the health-and-wellbeing question returns a sub-program
+figure (84.7M) instead of the strategic-priority total (89.8M). Week 3 will
+address this with semantic chunking.
+
+Week 3 focuses on access control (sensitivity tags + per-role filtering),
+citation verification, and query traces.
 
 See [docs/metrics.md](docs/metrics.md) for definitions and
 [eval/results/](eval/results/) for raw runs.
@@ -50,9 +61,10 @@ See [docs/metrics.md](docs/metrics.md) for definitions and
     User → FastAPI → Auth (JWT) → Retrieval (Chroma) → Generation (Groq) → Citations → UI
 
 - **Multi-tenant**: each organization has its own Chroma collection
-- **Access control**: enforced at retrieval time (Week 2)
-- **Citations**: every claim must reference a chunk ID (Week 2)
-- **Traces**: every query logged for debugging (Week 2)
+- **Hybrid retrieval**: BGE-large (semantic) + BM25 (keyword) + cross-encoder reranker
+- **Access control**: enforced at retrieval time (Week 3)
+- **Citations**: every claim must reference a chunk ID (Week 3)
+- **Traces**: every query logged for debugging (Week 3)
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) and [DECISIONS/](DECISIONS/)
 for design rationale.
@@ -70,7 +82,9 @@ for design rationale.
 - LangChain for orchestration
 - ChromaDB for vector storage (one collection per org)
 - Groq (`openai/gpt-oss-20b`) for generation
-- SentenceTransformers `all-MiniLM-L6-v2` for embeddings (local, free)
+- `BAAI/bge-large-en-v1.5` for embeddings (1024d, with query prefix)
+- `BAAI/bge-reranker-v2-m3` for cross-encoder re-ranking
+- `rank-bm25` for keyword retrieval (hybrid search)
 
 **Evaluation**
 
@@ -150,22 +164,31 @@ both summary metrics and per-case details.
 Real IFRC 2024 Annual Report (2,414 chunks). System correctly
 answered questions about specific figures including
 DREF's 76.5% direct allocation, the 45-year anniversary,
-and the Global Climate Resilience Platform's 1B CHF target.
+the Global Climate Resilience Platform's 1B CHF target,
+and the top 5 funding countries (US 151.0M, EU 106.3M,
+UK 57.2M, Switzerland 49.9M, Netherlands 35.2M).
 
 ## Roadmap
 
 - [x] **Week 1** — Baseline eval (20 cases), ADR, metrics
-- [ ] **Week 2** — Prompt engineering, access control, citations, traces
-- [ ] **Week 3** — uv migration, CI pipeline, portfolio README
-- [ ] **Week 4** — PII redaction, sensitivity routing, model gateway
+- [x] **Week 2** — Prompt v3, BGE-large, hybrid search, reranker. Correctness 50%→90%
+- [ ] **Week 3** — Access control, citation verification, traces
+- [ ] **Week 4** — PII redaction, model gateway, sensitivity routing
 - [ ] **Week 5** — Streamlit UI, user feedback
-- [ ] **Week 6** — Chroma vs Qdrant comparison, hybrid retrieval
+- [ ] **Week 6** — Chroma vs Qdrant comparison, semantic chunking
 - [ ] **Week 7** — Docker, deployment
 - [ ] **Week 8** — Multilingual eval
 - [ ] **Week 9** — Portfolio packaging
 
 ## What I Learned
 
+- **The retrieval stack matters more than the prompt.** Three prompt
+  iterations moved correctness by 0 points. One embedding swap + hybrid
+  search + reranker moved it by 30 points. A prompt can't fix what the
+  model never sees.
+- **Bi-encoders and cross-encoders do different jobs.** BGE-large
+  (bi-encoder) finds candidates fast. BGE-reranker (cross-encoder) scores
+  them accurately. You need both.
 - **Evaluation-driven development works.** Writing the eval set
   before touching the prompt forced me to separate retrieval
   failures from generation failures. The baseline (50% correctness)
