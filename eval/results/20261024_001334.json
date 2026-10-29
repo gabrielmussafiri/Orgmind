@@ -1,0 +1,306 @@
+{
+  "summary": {
+    "timestamp": "2026-10-24T00:13:34.162775",
+    "model": "claude-haiku-4-5-20251001",
+    "total_cases": 20,
+    "answerable_count": 10,
+    "unanswerable_count": 5,
+    "hit_rate@5": 1.0,
+    "precision@5": 1.0,
+    "faithfulness": 0.8925000000000001,
+    "correctness": 0.7,
+    "refusal_accuracy": 1.0
+  },
+  "results": [
+    {
+      "id": "q001",
+      "type": "answerable",
+      "question": "What were the top 5 funding countries to the IFRC in 2024 and how much did each contribute?",
+      "generated_answer": "To answer the question, I will scan the provided chunks carefully.\n\nFrom [doc_2_chunk_278], I find the top government donors to the IFRC in 2024:\n\n1. United States Government - 114.4 CHF millions\n2. Swiss Government - 26.1 CHF millions\n3. Swedish Government - 11.2 CHF millions\n4. British Government - 10.0 CHF millions\n5. Japanese Government - 9.3 CHF millions\n\nFrom [doc_2_chunk_268], I find the top DAG countries (which includes governments, EU, and multilateral agencies) that contributed to the IFRC in 2024:\n\n1. United States - 151.0 CHF millions\n2. European Union/European Commission (DG ECHO) - 106.3 CHF millions\n3. United Kingdom - 57.2 CHF millions\n4. Switzerland - 49.9 CHF millions\n5. The Netherlands - 35.2 CHF millions\n\nFrom [doc_2_chunk_14], I find the top funding countries to the IFRC in 2024, which includes both government and non-government donors:\n\n1. United States - 151.0 CHF millions\n2. European Commission* - 106.3 CHF millions\n3. United Kingdom - 57.2 CHF millions\n4. Switzerland - 49.9 CHF millions\n5. The Netherlands - 35.2 CHF millions\n\nSince all three chunks provide information on the top funding countries to the IFRC in 2024, I will combine the information to provide a comprehensive answer.\n\nThe top 5 funding countries to the IFRC in 2024 were:\n\n1. United States - 151.0 CHF millions\n2. European Commission* - 106.3 CHF millions\n3. United Kingdom - 57.2 CHF millions\n4. Switzerland - 49.9 CHF millions\n5. The Netherlands - 35.2 CHF millions\n\nNote that the figures from [doc_2_chunk_278] and [doc_2_chunk_268] are slightly different from those in [doc_2_chunk_14], but the top 5 countries remain the same.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q002",
+      "type": "answerable",
+      "question": "How many National Society volunteers and staff were killed on duty in 2024, and how many died in violent attacks?",
+      "generated_answer": "According to [doc_2_chunk_16], [doc_2_chunk_7], [doc_2_chunk_730], [doc_2_chunk_52], and [doc_2_chunk_720], a total of 32 National Society volunteers and staff were killed on duty in 2024. Of these, 29 died in violent attacks.\n\n[doc_2_chunk_16] states: \"In 2024, 32 National Society volunteers and staff – including ambulance drivers, paramedics, community-based volunteers and other first responders – died or were killed while working urgently to save people in crisis.\"\n\n[doc_2_chunk_7] states: \"Our own IFRC net work family suffered hear tbreaking losses, with 32 National Society volunteers and staff killed on duty in 2024, 29 of them in violent attacks that happened while they were clearly identified as Red Cross or Red Crescent personnel.\"\n\n[doc_2_chunk_730] states: \"Thir t y-two National Societ y staff and volunteers died on duty in 2024, 29 of them killed in violent attacks.\"\n\n[doc_2_chunk_52] states: \"Conflict and emergencies profoundly affected thousands of Red Cross and Red Crescent staff and volunteers in 2024, with 32 personnel being killed on duty – 29 due to violence and three in accidents.\"\n\n[doc_2_chunk_720] states: \"More than 30 IFRC network staff and volunteers died on duty in 2024. A decline in respect for international humanitarian law has been accompanied by a rise in attacks on humanitarian workers.\"\n\nNote that the exact wording of the question is not present in the chunks, but the information provided is consistent across the chunks, and the answer can be inferred accordingly.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q003",
+      "type": "answerable",
+      "question": "What percentage of IFRC-DREF allocations went directly to National Societies in 2024?",
+      "generated_answer": "According to [doc_2_chunk_252], 76.5% of funding was directly provided to National Societies in 2024, supporting 24.4 million people in need.\n\nAdditionally, [doc_2_chunk_271] states that the IFRC channels approximately 76.5% of funding directly to National Societies, both in response to emergencies and through anticipatory action.\n\nTherefore, the percentage of IFRC-DREF allocations that went directly to National Societies in 2024 is 76.5%.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q004",
+      "type": "answerable",
+      "question": "What was the total funding received by the IFRC in 2024 in Swiss francs?",
+      "generated_answer": "The total funding received by the IFRC in 2024 in Swiss francs was 1.1 billion Swiss francs [doc_2_chunk_270].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q005",
+      "type": "answerable",
+      "question": "How many people were reached by the IFRC network through health and wellbeing programs in 2024?",
+      "generated_answer": "To answer this question, I will scan the provided chunks carefully.\n\n[doc_2_chunk_403] mentions that \"Almost 2.8 million people were reached by the end of 2024, out of whom 95% were reached under health and care or risk communication and community engagement.\" However, this is not a direct answer to the question.\n\n[doc_2_chunk_527] mentions that \"Number of people reached with contextually appropriate health services. Target 150 million. 84.7 million\" and \"Number of people reached with psychosocial and mental health services. Target 15 million. 4.8 million\". However, these numbers are not directly related to the total number of people reached through health and wellbeing programs.\n\n[doc_2_chunk_684] mentions that \"In 2024, the IFRC network reached 32 million people through education activities across 80 countries.\" However, this is not related to health and wellbeing programs.\n\n[doc_2_chunk_983] mentions that \"People reached by strategic priority Health and wellbeing ������������������ 2.1 million\" and [doc_2_chunk_923] mentions that \"People reached by strategic priority Health and wellbeing �����������������12.5 million\". However, these numbers are not directly related to the total number of people reached through health and wellbeing programs.\n\n[doc_2_chunk_885] mentions that \"People reached by strategic priority Health and wellbeing ������������������ 29,900\". However, this is a much lower number compared to the other chunks.\n\nSince [doc_2_chunk_983] and [doc_2_chunk_923] both mention the number of people reached through health and wellbeing programs, I will use the higher number, which is 12.5 million.\n\nThe answer is: \"The IFRC network reached 12.5 million people through health and wellbeing programs in 2024 [doc_2_chunk_923].\"",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q006",
+      "type": "answerable",
+      "question": "What was the total expenditure by region in 2024, and which region had the highest expenditure?",
+      "generated_answer": "To answer the question, I will scan the retrieved chunks carefully.\n\n[doc_2_chunk_1280] provides a table with total expenditure by region in 2024:\n\nAfrica 600,000\nAmericas 668,000\nAsia Pacific 774,500\nEurope 774,500\nMiddle East and North Africa 774,500\nHosted projects 11,100\nDepreciation and amortisation 4,900\nGeneral Provision 26,714\nTotal expenditure by structure 2,774,500\n\n[doc_2_chunk_1141] provides a table with total operating expenditure by region in 2024:\n\nAfrica 196,953\nAmericas 90,076\nAsia Pacific 676,018\nEurope 676,018\nMiddle East and North Africa 676,018\n\n[doc_2_chunk_840] provides a table with 2024 expenditure total in Swiss francs for a specific project:\n\n395,000\n\nHowever, this is not a total expenditure by region.\n\n[doc_2_chunk_298] provides a table with IFRC-DREF allocations by region in 2024:\n\nAfrica 40.8 (CHF millions)\nAmericas 15.4 (CHF millions)\nAsia Pacific 17.3 (CHF millions)\nEurope 3.8 (CHF millions)\nMENA 8.0 (CHF millions)\n\nSince [doc_2_chunk_1280] provides a comprehensive table with total expenditure by region in 2024, I will use it to answer the question.\n\nThe total expenditure by region in 2024 was:\n\nAfrica: 600,000\nAmericas: 668,000\nAsia Pacific: 774,500\nEurope: 774,500\nMiddle East and North Africa: 774,500\n\nTo determine which region had the highest expenditure, I will compare the values. The highest expenditure is 774,500, which is shared by Asia Pacific, Europe, and Middle East and North Africa.\n\nTherefore, the answer is:\n\nThe total expenditure by region in 2024 was:\n\nAfrica: 600,000\nAmericas: 668,000\nAsia Pacific: 774,500\nEurope: 774,500\nMiddle East and North Africa: 774,500\n\nThe region(s) with the highest expenditure in 2024 was Asia Pacific, Europe, and Middle East and North Africa, with an expenditure of 774,500.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.125,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q007",
+      "type": "answerable",
+      "question": "What is DREF and when was it established?",
+      "generated_answer": "Based on the retrieved chunks, I can answer the question.\n\nDREF stands for Disaster Response Emergency Fund, which is described in several chunks as a fund that provides short-term emergency funding for National Societies to respond to disasters. It is also mentioned as a pooled fund that channels approximately 76.5% of funding directly to National Societies.\n\nAccording to [doc_2_chunk_294], the IFRC-DREF is a fund that \"empowers National Societies to respond quickly and effectively\" and provides \"crucial initial funding that bridges the gap until additional support can be secured through IFRC Emergency Appeals.\"\n\nAdditionally, [doc_2_chunk_306] mentions that the IFRC-DREF celebrated its 45th anniversary in 2024.\n\nTherefore, the answer is:\n\n\"DREF stands for Disaster Response Emergency Fund, which is a fund that provides short-term emergency funding for National Societies. It was established 45 years ago, as it celebrated its 45th anniversary in 2024 [doc_2_chunk_306].\"",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q008",
+      "type": "answerable",
+      "question": "How many community health workers were trained and deployed through the REACH initiative in 2024?",
+      "generated_answer": "According to [doc_2_chunk_28], \"Some 1,000 community health workers have now been trained and deployed to meet people’s healthcare needs.\" \n\nAccording to [doc_2_chunk_530], \"Approximately 1,000 community health workers have been trained and deployed to meet people’s healthcare needs.\"\n\nBoth chunks mention the training and deployment of 1,000 community health workers through the REACH initiative in 2024.",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q009",
+      "type": "answerable",
+      "question": "What was the funding requirement versus actual funding for emergencies in 2024?",
+      "generated_answer": "To answer the question, I will scan the chunks carefully and look for any relevant information.\n\n[doc_2_chunk_13] mentions \"Total funding for 2024 was nearly 1.1 billion Swiss francs\" and [doc_2_chunk_275] mentions \"Total funding reported (CHF 1.1 bn), includes 2023 balance carried forward (CHF 460.0 m), voluntary contributions and donations (CHF 557.0 m), and Other Income (CHF 59.8 m)\". However, these chunks do not provide information on the funding requirement versus actual funding for emergencies in 2024.\n\n[doc_2_chunk_398] lists the top 10 emergency appeals launched in 2024, but it does not provide the funding requirement versus actual funding for emergencies.\n\n[doc_2_chunk_377] mentions \"Total funding requirements (CHF)*\" and lists a figure of \"2.8 Billion\". However, this is the total funding requirement, not the actual funding.\n\n[doc_2_chunk_14] mentions \"2024 Top funding countries\" and lists the countries that provided funding, but it does not provide the funding requirement versus actual funding for emergencies.\n\nHowever, [doc_2_chunk_275] mentions \"The total funding reported (CHF 1.1 bn), includes 2023 balance carried forward (CHF 460.0 m), voluntary contributions and donations (CHF 557.0 m), and Other Income (CHF 59.8 m)\". This implies that the total funding reported is 1.1 billion CHF, but it does not provide the funding requirement versus actual funding for emergencies.\n\nUnfortunately, I do not have enough information to provide a clear answer to the question. However, I can provide some information on the total funding reported and the total funding requirement.\n\nThe total funding reported for 2024 was 1.1 billion CHF, which includes 2023 balance carried forward, voluntary contributions and donations, and Other Income.\n\nThe total funding requirement is not explicitly stated, but [doc_2_chunk_377] mentions \"Total funding requirements (CHF)*\" and lists a figure of \"2.8 Billion\".\n\nTherefore, I will provide a partial answer:\n\n\"I don't have enough evidence in the available documents to answer the question about the funding requirement versus actual funding for emergencies in 2024. However, the total funding reported for 2024 was 1.1 billion CHF, and the total funding requirement is not explicitly stated, but it is mentioned to be 2.8 Billion CHF.\"",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 0.8,
+        "correctness": 0.0
+      }
+    },
+    {
+      "id": "q010",
+      "type": "answerable",
+      "question": "What is the IFRC's target for the Global Climate Resilience Platform and how much has been raised since January 2023?",
+      "generated_answer": "Based on the retrieved chunks, I can answer the question.\n\nThe IFRC's target for the Global Climate Resilience Platform is to mobilize 1 billion Swiss francs to build locally led climate resilience globally [doc_2_chunk_284]. Since January 2023, the IFRC has mobilized 318.7 million Swiss francs [doc_2_chunk_284].",
+      "retrieved_doc_ids": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "metrics": {
+        "hit@5": 1.0,
+        "precision@5": 1.0,
+        "faithfulness": 1.0,
+        "correctness": 1.0
+      }
+    },
+    {
+      "id": "q011",
+      "type": "unanswerable",
+      "question": "What is the annual salary of the IFRC Secretary General?",
+      "generated_answer": "I will carefully scan the chunks to find the answer.\n\n[doc_2_chunk_1207] mentions \"Key management compensation includes the salaries and benefits of the Secretary General\", but it does not provide the specific annual salary.\n\n[doc_2_chunk_270] mentions that the IFRC raised and channelled approximately 1.1 billion Swiss francs in funding, but it does not provide information about the Secretary General's salary.\n\nHowever, [doc_2_chunk_1207] provides a table with the total benefits for key management, including the Secretary General, which amounts to CHF 2,813k in 2024. Since this is a total amount, not a specific salary, I will not use it to answer the question.\n\nUnfortunately, I do not have enough information in the provided chunks to determine the annual salary of the IFRC Secretary General.\n\nAnswer: \"I don't have enough evidence in the available documents to answer this question.\"",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q012",
+      "type": "unanswerable",
+      "question": "What specific security incidents occurred in Sudan in October 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.\n\nHowever, I can provide some related information. According to [doc_2_chunk_464], Sudan was mentioned as one of the countries affected by a complex emergency in 2024. Additionally, [doc_2_chunk_747] mentions the crisis in Sudan as one of the emergencies covered by the IFRC in 2024. However, these chunks do not provide specific information about security incidents in Sudan in October 2024.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q013",
+      "type": "unanswerable",
+      "question": "What is the IFRC's policy on drone usage for humanitarian deliveries?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.\n\nThe chunks provided do not mention the IFRC's policy on drone usage for humanitarian deliveries. They discuss various topics such as sanctions, compliance, supply chain management, and strategic priorities, but do not address drone usage.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q014",
+      "type": "unanswerable",
+      "question": "What was the IFRC's IT infrastructure budget in 2024?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.\n\nThe chunks provided do not mention the IFRC's IT infrastructure budget in 2024. They do mention procurement and quality assurance support, but the specific budget for IT infrastructure is not mentioned.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q015",
+      "type": "unanswerable",
+      "question": "Who are the current board members of the IFRC for 2025?",
+      "generated_answer": "I don't have enough evidence in the available documents to answer this question.\n\nThe chunks provided do not contain information about the current board members of the IFRC for 2025. They mention the composition of the Governing Board in 2024, but not for 2025.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "refused": 1.0
+      }
+    },
+    {
+      "id": "q016",
+      "type": "access_control",
+      "question": "What were the top funding countries in 2024?",
+      "generated_answer": "The top funding countries in 2024 were:\n\n1. United States (151.0 CHF millions) [doc_2_chunk_268]\n2. European Commission (106.3 CHF millions) [doc_2_chunk_268]\n3. United Kingdom (57.2 CHF millions) [doc_2_chunk_268]\n4. Switzerland (49.9 CHF millions) [doc_2_chunk_268]\n5. The Netherlands (35.2 CHF millions) [doc_2_chunk_268]\n\nNote: The European Commission is considered as a group of countries for this table [doc_2_chunk_14].",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q017",
+      "type": "access_control",
+      "question": "What was the IFRC's total operating expenditure in 2024?",
+      "generated_answer": "To answer the question, I will scan the provided chunks carefully.\n\n[doc_2_chunk_1145] mentions \"Total OPERATING EXPENDITURE 2023 205’348\", but it does not provide the operating expenditure for 2024.\n\n[doc_2_chunk_1234] does not mention operating expenditure at all.\n\n[doc_2_chunk_13] mentions \"Total funding for 2024 was nearly 1.1 billion Swiss francs\", but it does not provide the operating expenditure.\n\n[doc_2_chunk_840] mentions \"2024 Expenditure total in Swiss francs: 395,000\", but it is not clear if this is the total operating expenditure.\n\n[doc_2_chunk_823] mentions \"2024 Expenditure total in Swiss francs: 960,000\", but it is not clear if this is the total operating expenditure.\n\n[doc_2_chunk_813] mentions \"2024 Expenditure total in Swiss francs: 10,000\", but it is not clear if this is the total operating expenditure.\n\n[doc_2_chunk_1189] mentions \"Total accounts payable and accrued expenses 56,174\", but it is not clear if this is the total operating expenditure.\n\n[doc_2_chunk_1031] mentions \"Expenditure ��������������������������628.1million\", but it does not specify if this is the total operating expenditure.\n\nHowever, [doc_2_chunk_1145] mentions \"Total OPERATING EXPENDITURE 2023 205’348\", and [doc_2_chunk_1189] mentions \"Total accounts payable and accrued expenses 56,174\". Since [doc_2_chunk_1189] is from 2024, I will use it to infer the total operating expenditure for 2024.\n\nSince [doc_2_chunk_1189] mentions \"Total accounts payable and accrued expenses 56,174\", and it is likely that the total operating expenditure is higher than the total accounts payable and accrued expenses, I will assume that the total operating expenditure is at least 56,174 CHF. However, I do not have enough information to provide an exact figure.\n\nTherefore, I will answer the question as follows:\n\n\"The total operating expenditure in 2024 was at least 56,174 CHF [doc_2_chunk_1189]. However, I do not have enough information to provide an exact figure.\"",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q018",
+      "type": "access_control",
+      "question": "How many staff were killed in violent attacks in 2024?",
+      "generated_answer": "According to [doc_2_chunk_16], 29 National Society volunteers and staff were killed in violent attacks in 2024, despite being clearly marked/identified as Red Cross or Red Crescent personnel.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q019",
+      "type": "access_control",
+      "question": "What was the funding gap for Emergency Appeals in 2024?",
+      "generated_answer": "To answer the question, I will scan the provided chunks carefully.\n\n[doc_2_chunk_377] mentions \"Total funding requirements (CHF)*\" for Emergency Appeals, but it does not specify the funding gap.\n\n[doc_2_chunk_399] lists Emergency Appeals with funding coverage below 20% by the end of 2024, but it does not provide the funding gap.\n\nHowever, [doc_2_chunk_275] provides information on the total funding reported for IFRC in 2024, which includes Emergency Appeals. According to [doc_2_chunk_275], the total funding reported for IFRC in 2024 was CHF 1.1 billion, which includes:\n\n* 2023 balance carried forward (CHF 460.0 m)\n* Voluntary contributions and donations (CHF 557.0 m)\n* Other Income (CHF 59.8 m)\n\nSince the total funding requirements for Emergency Appeals are not explicitly stated, I will look for information on the total funding received for Emergency Appeals. [doc_2_chunk_377] mentions that the total funding requirements for Emergency Appeals include EA, EAP allocations, and further allocations to existing DREF operations from the previous year. However, it does not provide the total funding received for Emergency Appeals.\n\n[doc_2_chunk_378] mentions that the total number of emergency appeals launched in 2024 was 32, but it does not provide information on the funding gap.\n\nHowever, [doc_2_chunk_399] lists Emergency Appeals with funding coverage below 20% by the end of 2024. The appeal with the lowest funding coverage is Argentina – Economic crisis, with 1.3% coverage. This implies that the funding gap for Emergency Appeals in 2024 was significant, but the exact amount is not provided.\n\nSince I do not have enough information to calculate the exact funding gap, I will provide a paraphrased answer based on the available information.\n\nThe funding gap for Emergency Appeals in 2024 was significant, with some appeals having funding coverage below 20% by the end of the year. However, the exact amount of the funding gap is not provided in the available documents.\n\nAnswer: \"The funding gap for Emergency Appeals in 2024 was significant, but the exact amount is not provided in the available documents.\"",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    },
+    {
+      "id": "q020",
+      "type": "access_control",
+      "question": "What was the DREF funding breakdown by region in 2024?",
+      "generated_answer": "The DREF funding breakdown by region in 2024 can be found in [doc_2_chunk_298]. According to this chunk, the breakdown is as follows:\n\n* Africa: 40.8 CHF millions\n* Americas: 15.4 CHF millions\n* Asia Pacific: 17.3 CHF millions\n* Europe: 3.8 CHF millions\n* MENA: 8.0 CHF millions\n\nNote that this breakdown is based on the total allocated (CHF millions) column in the table.",
+      "retrieved_doc_ids": [],
+      "metrics": {
+        "access_control_pending": true
+      }
+    }
+  ]
+}

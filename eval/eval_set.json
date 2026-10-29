@@ -157,7 +157,7 @@
     "reference_answer": "United States, European Commission, United Kingdom, Switzerland, The Netherlands.",
     "source_page": 9,
     "user_org_id": 1,
-    "user_role": "external_auditor",
+    "user_role": "volunteer",
     "expected_behavior": "refuse_or_empty"
   },
   {

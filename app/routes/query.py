@@ -21,10 +21,11 @@ def ask_question(
     db : Session = Depends(get_db),
     current_user : User = Depends(get_current_user)
 ):
-    #  1.  Get Answer from RAG
+    #  1.  Get Answer from RAG With role-based acces control
     result = query_documents(
         question = request.question,
-        org_id = current_user.organization_id
+        org_id = current_user.organization_id,
+        user_role= current_user.role,
     )
     
     # 2. Save Conversation to database

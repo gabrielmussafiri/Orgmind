@@ -193,16 +193,48 @@ def run_eval():
 
         # ---------- ACCESS CONTROL ----------
         elif case_type == "access_control":
-            response = query_documents(question, org_id=case["user_org_id"])
+            user_role = case.get("user_role", "staff")
+            response = query_documents(
+                question, 
+                org_id=case["user_org_id"],
+                user_role=user_role,
+                )
             result["generated_answer"] = response["answer"]
-            # To be fully implemented in Week 2 (real access control)
-            result["metrics"]["access_control_pending"] = True
+            
+            # # The doc is "internal", so:
+            # - volunteer: should NOT see it (refuse or "I don't have enough evidence")
+            # - staff: should see it (answer)
+            # - external_partner: should NOT see it
+            answer_lower = response['answer'].lower()
+            refused =(
+                "don't have enough evidence" in answer_lower
+                or "not relevant documents" in answer_lower
+                or "does not contain information" in answer_lower
+            )
+            if user_role in ("volunteer", "external_partner"):
+                # Should be refused
+                result["metrics"]["access_control_correct"] = 1.0 if refused else 0.0
+            elif user_role in("staff", "admin"):
+                # should be answer( not refused)
+                result['metrics']['access_control_correct'] = 0.0 if refused else 1.0
 
         results.append(result)
 
-    # ---------- AGGREGATE  ----------
+    # ---------- AGGREGATE ----------
     answerable = [r for r in results if r["type"] == "answerable"]
     unanswerable = [r for r in results if r["type"] == "unanswerable"]
+    access_control_cases = [r for r in results if r["type"] == "access_control"]
+
+    # Compute access control accuracy separately (avoid generator division)
+    access_control_correct = sum(
+        r["metrics"].get("access_control_correct", 0)
+        for r in access_control_cases
+    )
+    access_control_accuracy = (
+        access_control_correct / len(access_control_cases)
+        if access_control_cases
+        else None
+    )
 
     summary = {
         "timestamp": datetime.utcnow().isoformat(),
@@ -210,6 +242,7 @@ def run_eval():
         "total_cases": len(cases),
         "answerable_count": len(answerable),
         "unanswerable_count": len(unanswerable),
+        "access_control_count": len(access_control_cases),
         "hit_rate@5": (
             sum(r["metrics"].get("hit@5", 0) for r in answerable)
             / len(answerable)
@@ -235,11 +268,17 @@ def run_eval():
             else None
         ),
         "refusal_accuracy": (
-            sum(r["metrics"].get("refused", 0) for r in unanswerable)
+            sum(
+                1
+                for r in unanswerable
+                if r["metrics"].get("refused") == 1.0
+                or r["metrics"].get("partial_honest") == 1.0
+            )
             / len(unanswerable)
             if unanswerable
             else None
         ),
+        "access_control_accuracy": access_control_accuracy,
     }
 
     # ---------- SAVE ----------

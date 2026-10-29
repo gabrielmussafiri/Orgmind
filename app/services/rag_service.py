@@ -2,6 +2,8 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
+
 from langchain_huggingface import HuggingFaceEmbeddings
 import chromadb
 from sentence_transformers import CrossEncoder
@@ -54,6 +56,17 @@ llm = ChatGroq(
 # ── BM25 index cache (per org) ──
 _bm25_cache: dict[int, tuple] = {}
 
+# Role based sensitivity access
+
+ROLE_SENSITIVITY ={
+    "volunteer":["public"],
+    "external_partner":["public"],
+    "staff":["public",'internal',"confidential"],
+    "admin":['public','internal','confidential','restricted'],
+}
+
+VALID_SENSITIVITIES =['public',]
+
 
 def _get_bm25_index(org_id: int):
     """Build BM25 index once per org, cache it for subsequent queries."""
@@ -73,7 +86,7 @@ def _get_bm25_index(org_id: int):
 
 
 # Ingest document into ChromaDB
-def ingest_document(file_path: str, org_id: int, doc_id: int, filename: str) -> int:
+def ingest_document(file_path: str, org_id: int, doc_id: int, filename: str , sensitivity: str = "internal",) -> int:
     # 1. Load PDF
     loader = PyPDFLoader(file_path)
     pages = loader.load()
@@ -92,6 +105,7 @@ def ingest_document(file_path: str, org_id: int, doc_id: int, filename: str) -> 
             "doc_id": str(doc_id),
             "filename": filename,
             "chunk_id": f"doc_{doc_id}_chunk_{i}",
+            "sensitivity":sensitivity,
         })
 
     # 4. Store in ChromaDB
@@ -110,7 +124,11 @@ def ingest_document(file_path: str, org_id: int, doc_id: int, filename: str) -> 
     return len(chunks)
 
 
-def retrieve_documents(question: str, org_id: int, k: int = 8):
+def retrieve_documents(question: str,org_id: int,user_role: str = "staff",k: int = 8,):
+    
+    # 1. Determine allowed sensitivities for this role
+    allowed = ROLE_SENSITIVITY.get(user_role, ["public"])
+
     collection_name = f"org_{org_id}"
     vectorstore = Chroma(
         client=chroma_client,
@@ -118,25 +136,39 @@ def retrieve_documents(question: str, org_id: int, k: int = 8):
         embedding_function=embedding_function,
     )
 
-    # 1. Semantic retrieval (top 20)
-    semantic_chunks = vectorstore.similarity_search(question, k=100)
+    # 2. Semantic retrieval — filtered BEFORE reaching the LLM
+    
+    semantic_chunks = vectorstore.similarity_search(
+        question,
+        k=100,
+        filter={"sensitivity": {"$in": allowed}},
+    )
 
     if not semantic_chunks:
         return []
 
-    # 2. BM25 keyword retrieval (top 20) — uses cached index
+    # 3. BM25 keyword retrieval — also filtered
     bm25, docs, metas = _get_bm25_index(org_id)
     tokenized_query = question.lower().split()
     bm25_scores = bm25.get_scores(tokenized_query)
+
+    # Only keep chunks the role is allowed to see
+    
+    allowed_indices = [
+        i for i in range(len(docs))
+        if metas[i].get("sensitivity", "internal") in allowed
+    ]
     top_bm25_indices = sorted(
-        range(len(bm25_scores)), key=lambda i: bm25_scores[i], reverse=True
+        allowed_indices,
+        key=lambda i: bm25_scores[i],
+        reverse=True,
     )[:100]
     bm25_chunks = [
         Document(page_content=docs[i], metadata=metas[i])
         for i in top_bm25_indices
     ]
 
-    # 3. Merge and dedupe by chunk_id
+    # 4. Merge and dedupe
     seen = set()
     merged = []
     for chunk in semantic_chunks + bm25_chunks:
@@ -145,17 +177,19 @@ def retrieve_documents(question: str, org_id: int, k: int = 8):
             seen.add(cid)
             merged.append(chunk)
 
-    # 4. Re-rank all candidates with cross-encoder
+    if not merged:
+        return []
+
+    # 5. Re-rank
     pairs = [(question, chunk.page_content) for chunk in merged]
     scores = reranker.predict(pairs)
     ranked = sorted(zip(merged, scores), key=lambda x: x[1], reverse=True)
     return [chunk for chunk, score in ranked[:k]]
 
-
 # Query ChromaDB and generate answer
-def query_documents(question: str, org_id: int) -> dict:
+def query_documents(question: str, org_id: int,user_role:str='staff') -> dict:
     # 1. Retrieve chunks
-    chunks = retrieve_documents(question, org_id)
+    chunks = retrieve_documents(question, org_id,user_role=user_role)
 
     if not chunks:
         return {

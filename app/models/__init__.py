@@ -67,6 +67,7 @@ class Document(Base):
     source = Column(String(100)) # upload, google_drive, email, whatsapp
     status = Column(String(50), default='processing') # processing, ready, failed
     chunk_count = Column(Integer,default=0) # How many chunk for chromaDb
+    sensitivity = Column(String(50), default='internal')
     uploaded_at = Column(DateTime , default=datetime.utcnow)
     organization_id = Column(Integer, ForeignKey('organizations.id'), nullable=False)
     
@@ -82,6 +83,7 @@ class Document(Base):
             'source':self.source,
             'status': self.status,
             'chunk_count':self.chunk_count,
+            'sensitivity':self.sensitivity,
             'uploaded_at':self.uploaded_at.isoformat()
         }
 
