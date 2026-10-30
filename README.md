@@ -3,7 +3,7 @@
 AI-powered institutional memory system for humanitarian
 and international organizations.
 
-![Status](https://img.shields.io/badge/status-week%202%20complete-blue)
+![Status](https://img.shields.io/badge/status-week%203%20in%20progress-blue)
 ![Python](https://img.shields.io/badge/python-3.13-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -27,15 +27,16 @@ isn't in the corpus, the system says so.
 
 ## Current Status
 
-**Week 2 complete: RAG pipeline v2.**
+**Week 3 (partial): role-based access control.**
 
-| Metric                  | W1 baseline | **W2 current** | Target |
-| ----------------------- | ----------- | -------------- | ------ |
-| Retrieval hit rate @5   | 100%        | **100%**       | ≥ 90%  |
-| Retrieval precision @5  | 100%        | **100%**       | ≥ 80%  |
-| Faithfulness (AI judge) | 98%\*       | **97.5%**      | ≥ 90%  |
-| Answer correctness      | 50%         | **90%**        | ≥ 80%  |
-| Refusal accuracy        | 60%         | **100%**       | ≥ 90%  |
+| Metric                      | W1 baseline | W2 (Groq) | W3 (Ollama) | Target |
+| --------------------------- | ----------- | --------- | ----------- | ------ |
+| Retrieval hit rate @5       | 100%        | 100%      | **100%**    | ≥ 90%  |
+| Retrieval precision @5      | 100%        | 100%      | **100%**    | ≥ 80%  |
+| Faithfulness (AI judge)     | 98%\*       | 97.5%     | **81.67%**  | ≥ 90%  |
+| Answer correctness          | 50%         | 90%       | **80%**     | ≥ 80%  |
+| Refusal accuracy            | 60%         | 100%      | **100%**    | ≥ 90%  |
+| **Access control accuracy** | —           | —         | **100%**    | ≥ 90%  |
 
 _\*W1 faithfulness was inflated by frequent refusals — the LLM refused instead of hallucinating._
 
@@ -44,14 +45,14 @@ _\*W1 faithfulness was inflated by frequent refusals — the LLM refused instead
 1. Prompt engineering (3 iterations): 50% → 50%. No effect.
 2. Chunking 500→1000 chars: refusal 80% → 100%. No effect on correctness.
 3. Embedding swap MiniLM → BGE-large (with query prefix): 50% → 60%.
-4. Hybrid search (BGE + BM25) + cross-encoder reranker + k=8: **60% → 90%**.
+4. Hybrid search (BGE + BM25) + cross-encoder reranker + k=8: **60% → 90%** (Groq).
+5. Role-based access control (sensitivity tags, filtered at retrieval time): **access_control 100%**.
 
-**One case remains:** the health-and-wellbeing question returns a sub-program
-figure (84.7M) instead of the strategic-priority total (89.8M). Week 3 will
-address this with semantic chunking.
+**Note on model choice:** W2 used Groq (`gpt-oss-20b`, 90% correctness). W3 used local Ollama (`llama3.1:8b`, 80% correctness) because Groq's free tier hit its daily token limit. Ollama is free and unlimited for testing; Groq is better on financial tables.
 
-Week 3 focuses on access control (sensitivity tags + per-role filtering),
-citation verification, and query traces.
+**One case remains:** the health-and-wellbeing question returns a sub-program figure (84.7M) instead of the strategic-priority total (89.8M). Week 4 will address this with semantic chunking.
+
+Week 4 focuses on citation verification and query traces.
 
 See [docs/metrics.md](docs/metrics.md) for definitions and
 [eval/results/](eval/results/) for raw runs.
@@ -62,9 +63,11 @@ See [docs/metrics.md](docs/metrics.md) for definitions and
 
 - **Multi-tenant**: each organization has its own Chroma collection
 - **Hybrid retrieval**: BGE-large (semantic) + BM25 (keyword) + cross-encoder reranker
-- **Access control**: enforced at retrieval time (Week 3)
-- **Citations**: every claim must reference a chunk ID (Week 3)
-- **Traces**: every query logged for debugging (Week 3)
+- **Access control**: role-based, enforced at retrieval time ✅ (Week 3)
+- **Sensitivity levels**: `public` / `internal` / `confidential` / `restricted`
+- **Roles**: `volunteer`, `external_partner`, `staff`, `admin`
+- **Citations**: every claim must reference a chunk ID (Week 4)
+- **Traces**: every query logged for debugging (Week 4)
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) and [DECISIONS/](DECISIONS/)
 for design rationale.
@@ -89,13 +92,14 @@ for design rationale.
 **Evaluation**
 
 - Claude Haiku 4.5 (Anthropic) as AI judge
-- Custom metrics: hit rate, precision, faithfulness, correctness, refusal
+- Custom metrics: hit rate, precision, faithfulness, correctness, refusal, access control
 - JSON baseline snapshots in `eval/results/`
 
 ## Features
 
 - Multi-tenant (each organization's data is isolated)
-- Upload PDF documents
+- Upload PDF documents with sensitivity tags (public/internal/confidential/restricted)
+- Role-based access control (4 roles: volunteer, external_partner, staff, admin)
 - Ask questions in plain language
 - AI answers with source citations
 - Conversation history per organization
@@ -111,7 +115,7 @@ for design rationale.
 
 ### Documents
 
-- `POST /documents/uploads`
+- `POST /documents/uploads` (accepts `sensitivity` form field)
 - `GET /documents/`
 - `DELETE /documents/{id}`
 
@@ -161,27 +165,34 @@ both summary metrics and per-case details.
 
 ## Tested With
 
-Real IFRC 2024 Annual Report (2,414 chunks). System correctly
+Real IFRC 2024 Annual Report (2,414 chunks, `internal` sensitivity). System correctly
 answered questions about specific figures including
 DREF's 76.5% direct allocation, the 45-year anniversary,
 the Global Climate Resilience Platform's 1B CHF target,
 and the top 5 funding countries (US 151.0M, EU 106.3M,
 UK 57.2M, Switzerland 49.9M, Netherlands 35.2M).
 
+Access control verified: `volunteer` role cannot retrieve `internal` chunks (refused), `staff` can (answered).
+
 ## Roadmap
 
 - [x] **Week 1** — Baseline eval (20 cases), ADR, metrics
 - [x] **Week 2** — Prompt v3, BGE-large, hybrid search, reranker. Correctness 50%→90%
-- [ ] **Week 3** — Access control, citation verification, traces
-- [ ] **Week 4** — PII redaction, model gateway, sensitivity routing
-- [ ] **Week 5** — Streamlit UI, user feedback
-- [ ] **Week 6** — Chroma vs Qdrant comparison, semantic chunking
-- [ ] **Week 7** — Docker, deployment
-- [ ] **Week 8** — Multilingual eval
+- [x] **Week 3 (partial)** — Role-based access control (sensitivity tags), access_control 100%
+- [ ] **Week 4** — Citation verification, query traces
+- [ ] **Week 5** — PII redaction, model gateway
+- [ ] **Week 6** — Streamlit UI, user feedback
+- [ ] **Week 7** — Chroma vs Qdrant comparison, semantic chunking
+- [ ] **Week 8** — Docker, deployment, multilingual eval
 - [ ] **Week 9** — Portfolio packaging
 
 ## What I Learned
 
+- **Access control must be enforced before the LLM, not after.** Filtering
+  the retrieved chunks by user role means the LLM never sees what the user
+  can't see. Filtering the output is too late — the LLM has already read the
+  confidential chunk. In Chroma, this is a
+  `filter={"sensitivity": {"$in": allowed}}` on the `similarity_search` call.
 - **The retrieval stack matters more than the prompt.** Three prompt
   iterations moved correctness by 0 points. One embedding swap + hybrid
   search + reranker moved it by 30 points. A prompt can't fix what the
