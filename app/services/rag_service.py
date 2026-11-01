@@ -9,7 +9,7 @@ import chromadb
 from sentence_transformers import CrossEncoder
 from rank_bm25 import BM25Okapi
 from langchain_core.documents import Document
-
+import re
 from app.config import settings
 
 
@@ -264,16 +264,24 @@ Answer (or refuse if the chunks do not contain the answer):"""
 
     # 4. Generate answer with Groq
     response = llm.invoke(prompt)
+    
+    # 5. Verify citations
+    verification = verify_citations(response.content, chunks)
 
     return {
         "answer": response.content,
         "sources": sources,
         "doc_ids": doc_ids,
         "context": context,
+        "citations": verification["citations"],
+        "citation_validity": verification["validity"],
+        "num_citations": verification["num_cited"],
+        "num_valid_citations": verification["num_valid"],
     }
+    
+    
 
 #  Sensitivity sync (Postgres -> Chroma)
-
 def update_chunk_sensitivity(org_id:int , doc_id:int , new_sensitivity:str)-> int:
     """ Update the sensitivity metadata for all chunks of given document """
     collection_name = f'org_{org_id}'
@@ -296,6 +304,8 @@ def update_chunk_sensitivity(org_id:int , doc_id:int , new_sensitivity:str)-> in
     if org_id in _bm25_cache:
         del _bm25_cache[org_id]
     return len(chunk_ids)
+
+
 def delete_document_chunks(org_id: int, doc_id: int) -> int:
     """Delete all chunks of a document from Chroma (used when the document is deleted)."""
     collection_name = f"org_{org_id}"
@@ -311,3 +321,55 @@ def delete_document_chunks(org_id: int, doc_id: int) -> int:
         del _bm25_cache[org_id]
 
     return len(chunk_ids)
+
+# Citation verification
+def verify_citations(answer:str , retrieved_chunks:list) -> dict:
+    """
+    Extract all [chunk_id] citations from the answer and verify they
+    exist in the retrieved chunks. Returns:
+      - citations: list of {chunk_id, valid, excerpt}
+      - validity: fraction of valid citations (0.0 to 1.0)
+    """
+    # Extract all [chunk_id] patterns (e.g. [doc_2_chunk_15])
+    pattern = r"\[(doc_\d+_chunk_\d+)\]"
+    cited_ids = re.findall(pattern, answer)
+    
+    if not cited_ids:
+        return{
+            "citations":[],
+            "validity": 1.0 if answer.strip() else 0.0,
+            "num_cited":0,
+            "num_valid":0,
+        }
+        
+    # Build a map of retrieved chunk IDs to their excerpts -> chunk content
+    retrieved_map ={
+        chunk.metadata.get("chunk_id"): chunk.page_content for chunk in retrieved_chunks
+    }
+    citations = []
+    num_valid = 0
+    
+    for cid in cited_ids:
+        if cid in retrieved_map:
+            num_valid += 1
+            citations.append({
+                "chunk_id": cid,
+                "valid":True,
+                "excerpt": retrieved_map[cid][:200],
+            })
+        else:
+            citations.append({
+                "chunk_id": cid,
+                "valid":False,
+                "excerpt": None,
+            })
+    validity = num_valid / len(cited_ids) if cited_ids else 1.0
+
+    return {
+        "citations": citations,
+        "validity": validity,
+        "num_cited": len(cited_ids),
+        "num_valid": num_valid,
+    }
+    
+        

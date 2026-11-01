@@ -42,11 +42,13 @@ def ask_question(
     db.refresh(conversation)
     
     # 3. Return Answer with Sources
-    return{
+    return {
         "question": request.question,
         "answer": result['answer'],
         "sources": result['sources'],
-        "saved_at": conversation.created_at.isoformat()
+        "citations": result.get('citations', []),
+        "citation_validity": result.get('citation_validity', None),
+        "saved_at": conversation.created_at.isoformat(),
     }
 
 # ── Get conversation history ──────────────────────────

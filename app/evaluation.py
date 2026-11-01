@@ -174,6 +174,14 @@ def run_eval():
                     time.sleep(30)
                 result["metrics"]["correctness"] = None
                 result["metrics"]["correctness_error"] = str(e)
+            
+            # Citation validity
+            result["metrics"]["citation_validity"] = response.get(
+                "citation_validity", None
+            )
+            result["metrics"]["num_citations"] = response.get(
+                "num_citations", 0
+            )
 
         # ---------- UNANSWERABLE ----------
         elif case_type == "unanswerable":
@@ -279,6 +287,23 @@ def run_eval():
             else None
         ),
         "access_control_accuracy": access_control_accuracy,
+        
+                "citation_validity": (
+            sum(
+                r["metrics"].get("citation_validity") or 0
+                for r in answerable
+                if r["metrics"].get("citation_validity") is not None
+            )
+            / len([
+                r for r in answerable
+                if r["metrics"].get("citation_validity") is not None
+            ])
+            if any(
+                r["metrics"].get("citation_validity") is not None
+                for r in answerable
+            )
+            else None
+        ),
     }
 
     # ---------- SAVE ----------
