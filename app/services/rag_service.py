@@ -65,7 +65,7 @@ ROLE_SENSITIVITY ={
     "admin":['public','internal','confidential','restricted'],
 }
 
-VALID_SENSITIVITIES =['public',]
+VALID_SENSITIVITIES =['public','internal', 'confidential','restricted']
 
 
 def _get_bm25_index(org_id: int):
@@ -271,3 +271,43 @@ Answer (or refuse if the chunks do not contain the answer):"""
         "doc_ids": doc_ids,
         "context": context,
     }
+
+#  Sensitivity sync (Postgres -> Chroma)
+
+def update_chunk_sensitivity(org_id:int , doc_id:int , new_sensitivity:str)-> int:
+    """ Update the sensitivity metadata for all chunks of given document """
+    collection_name = f'org_{org_id}'
+    col = chroma_client.get_collection(collection_name)
+    
+    #  Get all chunks IDs for this document
+    res = col.get(where={"doc_id": str(doc_id)} , include=['metadatas'])
+    chunk_ids = res["ids"]
+    
+    if not chunk_ids:
+        return 0
+    
+    # Update metadata for each chunk
+    for cid in chunk_ids:
+        meta = col.get(ids=[cid], include=["metadatas"])["metadatas"][0]
+        meta["sensitivity"] = new_sensitivity
+        col.update(ids=[cid], metadatas=[meta])
+    
+    # Invalidate BM25 cache so it rebuilds with the new metadata
+    if org_id in _bm25_cache:
+        del _bm25_cache[org_id]
+    return len(chunk_ids)
+def delete_document_chunks(org_id: int, doc_id: int) -> int:
+    """Delete all chunks of a document from Chroma (used when the document is deleted)."""
+    collection_name = f"org_{org_id}"
+    col = chroma_client.get_collection(collection_name)
+
+    res = col.get(where={"doc_id": str(doc_id)}, include=[])
+    chunk_ids = res["ids"]
+
+    if chunk_ids:
+        col.delete(ids=chunk_ids)
+
+    if org_id in _bm25_cache:
+        del _bm25_cache[org_id]
+
+    return len(chunk_ids)
